@@ -2,7 +2,6 @@
 **Deploy Strapi on AWS EC2 using Terraform**
 
 **Step1: Write Terraform Code**
-## Author: Ravi Prakash Yadav
 
 Write all the code to deploy using terraform 
 
