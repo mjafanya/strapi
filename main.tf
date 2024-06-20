@@ -1,6 +1,4 @@
-##################################
 ## SSH Key Pair Generation
-##################################
 
 resource "tls_private_key" "strapi_key" {
   algorithm = "RSA"
@@ -12,9 +10,9 @@ resource "aws_key_pair" "strapi_keypair" {
   public_key = tls_private_key.strapi_key.public_key_openssh
 }
 
-##################################
+
 ## EC2 Instance
-##################################
+
 
 resource "aws_instance" "strapi_instance" {
   ami           = var.ami
@@ -23,7 +21,7 @@ resource "aws_instance" "strapi_instance" {
   security_groups = [aws_security_group.strapi_sg.name]
 
   tags = {
-    Name = "Ravi-Strapi-Instance"
+    Name = "Jafanya-Strapi-Instance"
   }
 
   provisioner "remote-exec" {
@@ -48,9 +46,9 @@ resource "aws_instance" "strapi_instance" {
 
 }
 
-##################################
+
 ## Security Group
-##################################
+
 
 resource "aws_security_group" "strapi_sg" {
   name        = "strapi-security-group2"

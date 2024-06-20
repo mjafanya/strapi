@@ -1,7 +1,7 @@
 variable "region" {
-  default = "eu-west-2"
+  default = "us-east-1"
 }
 
 variable "ami" {
-  default = "ami-053a617c6207ecc7b"
+  default = "ami-0e001c9271cf7f3b9"
 }
