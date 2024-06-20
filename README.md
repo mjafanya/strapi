@@ -48,7 +48,7 @@ Write all the code to deploy using terraform
 
    `  `tags = {
 
-   `    `Name = "Ravi-Strapi-Instance"
+   `    `Name = "jafanya-Strapi-Instance"
 
    `  `}
 
@@ -152,7 +152,7 @@ Write all the code to deploy using terraform
 
    variable "region" {
 
-   `  `default = "eu-west-2"
+   `  `default = "us-east-1"
 
    }
 
@@ -361,4 +361,3 @@ Fill all the details and click on lets’ start.
 
 Strapi is running succesfully on ec2 instance.
 
-## Author: Ravi Prakash Yadav
