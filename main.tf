@@ -24,18 +24,23 @@ resource "aws_instance" "strapi_instance" {
     Name = "Jafanya-Strapi-Instance"
   }
 
-  provisioner "remote-exec" {
-  inline = [
-    "sudo apt-get update",
-    "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -",
-    "sudo apt-get install -y nodejs",
-    "sudo apt-get install -y npm",
-    "sudo npm install pm2 -g",
-    "if [ ! -d /srv/strapi ]; then sudo git clone https://github.com/mjafanya/strapi.git /srv/strapi; else cd /srv/strapi && sudo git pull origin master; fi",
-    "sudo chmod u+x /srv/strapi/generate_env_variables.sh*",
-    "cd /srv/strapi",
-    "sudo ./generate_env_variables.sh",
-]
+ user_data = <<-EOF
+    #!/bin/bash
+    sudo apt-get update
+    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    sudo apt-get install -y npm
+    sudo npm install pm2 -g
+    if [ ! -d /srv/strapi ]; then
+      sudo git clone https://github.com/mjafanya/strapi-terraform.git /srv/strapi
+    else
+      cd /srv/strapi && sudo git pull origin master
+    fi
+    sudo chmod u+x /srv/strapi/generate_env_variables.sh*
+    cd /srv/strapi
+    sudo ./generate_env_variables.sh
+  EOF
+
     connection {
       type        = "ssh"
       user        = "ubuntu"
